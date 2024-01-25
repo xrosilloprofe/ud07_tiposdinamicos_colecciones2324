@@ -21,5 +21,10 @@ public class MainDE {
         listaEnteros.addHead(3);
         System.out.println(listaEnteros);
 
+        ListaDE<Persona> listaPersonas = new ListaDE<>();
+        listaPersonas.addTail(new Persona("1A","uno","uno uno",31));
+        listaPersonas.addTail(new Persona("2A","dos","dos dos",32));
+        listaPersonas.addTail(new Persona("3A","tres","tres tres",33));
+        System.out.println(Arrays.toString(listaPersonas.getAsArray(Persona.class)));
     }
 }
