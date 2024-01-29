@@ -1,6 +1,8 @@
+package tad;
+
 import java.lang.reflect.Array;
 
-public class ListaDE<E> {
+public class ListaDE<E> implements ILista<E>{
 
     private int size;
     private Nodo<E> head;
@@ -11,6 +13,9 @@ public class ListaDE<E> {
         head=tail=null;
     }
 
+    @Override
+    public int size(){return size;}
+    @Override
     public void addHead(E elem){
         Nodo<E> nodo=new Nodo<>(elem);
         if(size==0){
@@ -35,7 +40,7 @@ public class ListaDE<E> {
         tail=nodo;
         size++;
     }
-
+    @Override
     public E removeHead(){
         if(size==0) return null;
         E elemento=head.getElem();
@@ -61,7 +66,7 @@ public class ListaDE<E> {
 
     @Override
     public String toString(){
-        String cadena = "ListaDE con " + size + " valores\n";
+        String cadena = "tad.ListaDE con " + size + " valores\n";
         cadena += " Elementos: ";
         Nodo<E> nodoAux=head;
         while(nodoAux!=null){

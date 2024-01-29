@@ -1,24 +1,30 @@
-public class ListaGenerica<E> {
+package tad;
 
-    private Nodo head;
-    private Nodo tail;
+import java.lang.reflect.Array;
+
+public class ListaGenerica<E> implements ILista<E>{
+
+    private Nodo<E> head;
+    private Nodo<E> tail;
     private int size;
 
-    public Lista(){
+    public ListaGenerica(){
         head=null;
         tail=null;
-        size=0;
+        size=INITIAL_SIZE;
     }
 
-    public Lista(int[] elements){
+    public ListaGenerica(E[] elements){
         this();
         addAll(elements);
     }
 
+    @Override
     public int size(){return size;}
 
-    public void addHead(int elem){
-        Nodo nodo = new Nodo(elem);
+    @Override
+    public void addHead(E elem){
+        Nodo<E> nodo = new Nodo<>(elem);
         if(size==0)
             tail=nodo;
         else
@@ -27,8 +33,8 @@ public class ListaGenerica<E> {
         size++;
     }
 
-    public void addTail(int elem){
-        Nodo nodo=new Nodo(elem);
+    public void addTail(E elem){
+        Nodo<E> nodo=new Nodo<>(elem);
         if(size==0){
             head=nodo;
         } else{
@@ -39,9 +45,10 @@ public class ListaGenerica<E> {
         size++;
     }
 
-    public Integer removeHead(){
+    @Override
+    public E removeHead(){
         if(head==null) return null;
-        int elem = head.getElem();
+        E elem = head.getElem();
         head=head.getSiguiente();
         size--;
 
@@ -49,18 +56,18 @@ public class ListaGenerica<E> {
         return elem;
     }
 
-    public Integer removeTail(){
+    public E removeTail(){
         if(tail==null || head==null || size==0)
             return null;
         if(size==1 || head==tail)
             return removeHead();
-        Nodo nodoBeforeTail = head;
+        Nodo<E> nodoBeforeTail = head;
         while(nodoBeforeTail.getSiguiente()!=tail){
             nodoBeforeTail=nodoBeforeTail.getSiguiente();
         }
         nodoBeforeTail.setSiguiente(null);
 
-        int elem=tail.getElem();
+        E elem=tail.getElem();
         tail=nodoBeforeTail;
 
         size--;
@@ -73,13 +80,13 @@ public class ListaGenerica<E> {
         size=0;
     }
 
-    public boolean contains(int num){
+    public boolean contains(E elemento){
 
         boolean encontrado=false;
-        Nodo aux=head;
+        Nodo<E> aux=head;
 
         while(!encontrado && aux!=null){
-            if(aux.getElem()==num)
+            if(aux.getElem().equals(elemento))
                 encontrado=true;
             else
                 aux=aux.getSiguiente();
@@ -87,38 +94,38 @@ public class ListaGenerica<E> {
         return encontrado;
     }
 
-    public Integer get(int posicion){
+    public E get(int posicion){
         if(posicion<0 || posicion>=size) return null;
-        Nodo aux=head;
+        Nodo<E> aux=head;
         for (int i = 0; i < posicion; i++) {
             aux=aux.getSiguiente();
         }
         return aux.getElem();
     }
 
-    public Integer remove(int posicion){
+    public E remove(int posicion){
         if(posicion<0 || posicion>=size) return null;
         if(posicion==0) return removeHead();
         if(posicion==size-1) return removeTail();
 
-        Nodo aux=head;
+        Nodo<E> aux=head;
         for (int i = 0; i < posicion-1; i++) {
             aux=aux.getSiguiente();
         }
-        int num = aux.getSiguiente().getElem();
+        E elemento = aux.getSiguiente().getElem();
         aux.setSiguiente(aux.getSiguiente().getSiguiente());
         size--;
-        return num;
+        return elemento;
     }
 
-    public void addAll(int[] elements){
-        for(int element:elements)
+    public void addAll(E[] elements){
+        for(E element:elements)
             addTail(element);
     }
 
-    public int[] getAsArray(){
-        int[] array = new int[size];
-        Nodo aux=head;
+    public E[] getAsArray(Class clazz){
+        E[] array = (E[]) Array.newInstance(clazz,size);
+        Nodo<E> aux=head;
         for (int i = 0; i < size; i++) {
             array[i]=aux.getElem();
             aux=aux.getSiguiente();
@@ -126,11 +133,10 @@ public class ListaGenerica<E> {
         return array;
     }
 
-
     @Override
     public String toString(){
-        Nodo nodoAux = head;
-        String cadena = "Lista con número de elementos: " + size() + " --- ";
+        Nodo<E> nodoAux = head;
+        String cadena = "tad.Lista con número de elementos: " + size() + " --- ";
         while(nodoAux!=null){
             cadena += nodoAux + "->";
             nodoAux=nodoAux.getSiguiente();
@@ -138,24 +144,24 @@ public class ListaGenerica<E> {
         return cadena;
     }
 
-    private class Nodo{
-        private int elem;
-        private Nodo siguiente;
+    private class Nodo<E>{
+        private E elem;
+        private Nodo<E> siguiente;
 
-        public Nodo(int elem){
+        public Nodo(E elem){
             this.elem=elem;
             siguiente=null;
         }
 
-        public int getElem(){return elem;}
-        public Nodo getSiguiente(){return siguiente;}
-        public void setSiguiente(Nodo nodo){
+        public E getElem(){return elem;}
+        public Nodo<E> getSiguiente(){return siguiente;}
+        public void setSiguiente(Nodo<E> nodo){
             siguiente=nodo;
         }
 
         @Override
         public String toString(){
-            return ""+elem;
+            return ""+elem.toString();
         }
     }
 }

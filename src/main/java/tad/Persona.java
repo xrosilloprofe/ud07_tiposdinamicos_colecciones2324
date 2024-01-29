@@ -1,3 +1,5 @@
+package tad;
+
 public class Persona {
     private String DNI;
     private String nombre;
@@ -28,7 +30,7 @@ public class Persona {
     }
     protected void cumplirAnyos(){ this.edad++;}
     public void printDNI(){
-        System.out.println("Desde Persona imprimo el DNI: " + DNI);
+        System.out.println("Desde tad.Persona imprimo el DNI: " + DNI);
     }
 
     @Override

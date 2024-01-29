@@ -1,3 +1,5 @@
+package tad;
+
 public class Lista {
 
     private Nodo head;
@@ -130,7 +132,7 @@ public class Lista {
 @Override
 public String toString(){
         Nodo nodoAux = head;
-        String cadena = "Lista con número de elementos: " + size() + " --- ";
+        String cadena = "tad.Lista con número de elementos: " + size() + " --- ";
         while(nodoAux!=null){
             cadena += nodoAux + "->";
             nodoAux=nodoAux.getSiguiente();
