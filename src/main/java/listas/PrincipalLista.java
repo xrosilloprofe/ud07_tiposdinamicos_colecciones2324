@@ -29,10 +29,10 @@ public class PrincipalLista {
         listaPersonas.add(new Persona("2B","manuel","garcía",LocalDate.of(1987,4,10)));
         listaPersonas.add(new Persona("3C","jose","romero",LocalDate.of(1998,10,2)));
         listaPersonas.add(new Persona("4D","carmen","navarro",LocalDate.of(2000,2,19)));
-        listaPersonas.add(new Persona("5A","jaime","cano", LocalDate.of(1974,12,15)));
-        listaPersonas.add(new Persona("6B","matthew","garcía",LocalDate.of(1987,4,10)));
-        listaPersonas.add(new Persona("7C","marcos","romero",LocalDate.of(1998,10,2)));
-        listaPersonas.add(new Persona("8D","alex","navarro",LocalDate.of(2000,2,19)));
+        listaPersonas.add(new Persona("5A","jaime","cano", LocalDate.of(1994,2,15)));
+        listaPersonas.add(new Persona("6B","matthew","garcía",LocalDate.of(1967,9,10)));
+        listaPersonas.add(new Persona("7C","marcos","romero",LocalDate.of(1988,11,2)));
+        listaPersonas.add(new Persona("8D","alex","navarro",LocalDate.of(2005,3,19)));
 
 
         System.out.println(
@@ -53,7 +53,7 @@ public class PrincipalLista {
         Persona p;
         while(iteradorPersona.hasNext()){
             p = iteradorPersona.next();
-            if(p.getNombre().contains("o")){
+            if(p.getNombre().contains("z")){
                 iteradorPersona.remove();
                 System.out.println("Hem esborrat a -->" + p);
             }
@@ -63,7 +63,7 @@ public class PrincipalLista {
 
         Collections.sort(listaPersonas);
         System.out.println(listaPersonas);
-
-
+        listaPersonas.sort(Persona.SORT_BY_AGE);
+        System.out.println(listaPersonas);
     }
 }

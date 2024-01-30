@@ -1,8 +1,15 @@
 package model;
 
 import java.time.LocalDate;
+import java.util.Comparator;
 
 public class Persona implements Comparable<Persona>{
+    public static final Comparator<Persona> SORT_BY_AGE= new Comparator<>() {
+        @Override
+        public int compare(Persona o1, Persona o2) {
+            return o1.getFechaNacimiento().compareTo(o2.getFechaNacimiento());
+        }
+    };
     private String DNI;
     private String nombre;
     private String apellidos;
@@ -47,6 +54,11 @@ public class Persona implements Comparable<Persona>{
         return this.DNI.equals(persona.getDNI()) &&
             this.nombre.equals(persona.getNombre()) &&
                 this.apellidos.equals(persona.getApellidos());
+    }
+
+    @Override
+    public int hashCode(){
+        return nombre.hashCode()+apellidos.hashCode();
     }
 
     @Override
