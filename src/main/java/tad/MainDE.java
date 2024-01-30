@@ -1,5 +1,8 @@
 package tad;
 
+import model.Persona;
+
+import java.time.LocalDate;
 import java.util.Arrays;
 
 public class MainDE {
@@ -24,9 +27,9 @@ public class MainDE {
         System.out.println(listaEnteros);
 
         ListaDE<Persona> listaPersonas = new ListaDE<>();
-        listaPersonas.addTail(new Persona("1A","uno","uno uno",31));
-        listaPersonas.addTail(new Persona("2A","dos","dos dos",32));
-        listaPersonas.addTail(new Persona("3A","tres","tres tres",33));
+        listaPersonas.addTail(new Persona("1A","uno","uno uno", LocalDate.of(1999,12,21)));
+        listaPersonas.addTail(new Persona("2A","dos","dos dos",LocalDate.of(2002,2,13)));
+        listaPersonas.addTail(new Persona("3A","tres","tres tres",LocalDate.of(1984,6,5)));
         System.out.println(Arrays.toString(listaPersonas.getAsArray(Persona.class)));
     }
 }
