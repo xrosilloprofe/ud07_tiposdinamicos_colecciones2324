@@ -42,6 +42,7 @@ public class Bombo {
     public Bola getBola(){
         Bola bola=null;
         Iterator<Bola> iterador = bombo.iterator();
+        //quiamos el elemento en la posición 0
         if(iterador.hasNext()){
             bola = iterador.next();
             iterador.remove();
