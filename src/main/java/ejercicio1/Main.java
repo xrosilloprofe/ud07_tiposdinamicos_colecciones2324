@@ -2,6 +2,7 @@ package ejercicio1;
 
 import java.time.LocalDate;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) {
@@ -47,6 +48,24 @@ public class Main {
         //Listado de solo los trabajadores ordenados por su orden natural (alfabético).
         //Esto lo deberemos hacer al menos de dos maneras diferentes.
         //Por ejemplo, mediante un TreeSet y un ArrayList
+        Set<Trabajador> trabajadorSet = new TreeSet<>(trabajadores.keySet());
+        for(Trabajador trabajador:trabajadorSet)
+            System.out.print(" --> Trabajador " + trabajador);
+        System.out.println();
+
+        List<Trabajador> trabajadorList = new ArrayList<>(trabajadores.keySet());
+        Collections.sort(trabajadorList);
+//        trabajadorList.sort(Trabajador::compareTo);
+        for(Trabajador trabajador:trabajadorList)
+            System.out.print(" --> Trabajador " + trabajador);
+        System.out.println();
+        trabajadorList.stream().sorted().forEach(trabajador->System.out.print(" --> Trabajador " + trabajador));
+        System.out.println();
+//        List<Trabajador> ordenados = trabajadorList.stream().sorted().collect(Collectors.toList());
+
+        //Informe con los países por orden alfabético y sus trabajadores por edad
+        // (dos informes por separado e intentarlo con un único informe)
+        Map<Pais,Set<Trabajador>> paisesTrabajadores = new TreeMap<>();
 
 
     }
