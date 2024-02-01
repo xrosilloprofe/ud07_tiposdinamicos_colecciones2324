@@ -67,6 +67,7 @@ public class Main {
         // (dos informes por separado e intentarlo con un único informe)
         Map<Pais,Set<Trabajador>> paisesTrabajadores = new TreeMap<>();
 
+        //Periodo entre dos fechas --> Period.between(fechanacimiento,fecha actual).getYears()
 
     }
 }
