@@ -1,6 +1,6 @@
 package ejercicio1;
 
-public class Pais {
+public class Pais implements Comparable<Pais>{
     private String nombre;
     private int poblacion;
 
@@ -19,7 +19,22 @@ public class Pais {
 
     @Override
     public String toString(){
-        return "Pais: "+nombre+" con población: "+poblacion;
+        return "Pais: "+nombre;
     }
 
+    @Override
+    public int hashCode(){return nombre.hashCode()+poblacion;}
+
+    @Override
+    public boolean equals(Object o){
+        if(o==null || !(o instanceof Trabajador))
+            return false;
+        Pais pais=(Pais) o;
+        return (pais.nombre.equals(nombre));
+    }
+
+    @Override
+    public int compareTo(Pais o) {
+        return nombre.compareTo(o.getNombre());
+    }
 }
