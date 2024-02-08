@@ -9,17 +9,13 @@ public class Pais implements Comparable<Pais>{
         this.poblacion=poblacion;
     }
 
-    public int getPoblacion() {
-        return poblacion;
-    }
-
     public String getNombre() {
         return nombre;
     }
 
     @Override
     public String toString(){
-        return "Pais: "+nombre;
+        return nombre;
     }
 
     @Override
@@ -27,7 +23,7 @@ public class Pais implements Comparable<Pais>{
 
     @Override
     public boolean equals(Object o){
-        if(o==null || !(o instanceof Trabajador))
+        if(o==null || !(o instanceof Pais))
             return false;
         Pais pais=(Pais) o;
         return (pais.nombre.equals(nombre));

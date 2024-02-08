@@ -1,6 +1,7 @@
 package ejercicio1;
 
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -65,9 +66,47 @@ public class Main {
 
         //Informe con los países por orden alfabético y sus trabajadores por edad
         // (dos informes por separado e intentarlo con un único informe)
-        Map<Pais,Set<Trabajador>> paisesTrabajadores = new TreeMap<>();
+        List<Pais> paisList = new LinkedList<>(trabajadores.values());
+        Collections.sort(paisList);
+        for(Pais pais:paisList)
+            System.out.print(" --> País " + pais);
+        System.out.println();
+
+        List<Trabajador> trabajadorListEdad = new ArrayList<>(trabajadores.keySet());
+        trabajadorListEdad.sort(Trabajador.SORT_BY_AGE2);
+        for(Trabajador trabajador:trabajadorListEdad)
+            System.out.print(" --> Trabajador " + trabajador);
+        System.out.println();
+
+        //Un único informe
+        Map<Pais,List<Trabajador>> paisesTrabajadores = new TreeMap<>();
+        for(Pais pais:trabajadores.values()){
+            List<Trabajador> aux = new ArrayList<>();
+            for(Trabajador trabajador:trabajadores.keySet())
+                if(trabajadores.get(trabajador).equals(pais)){
+                    aux.add(trabajador);
+                }
+            aux.sort(Trabajador.SORT_BY_AGE1);
+            paisesTrabajadores.put(pais,aux);
+        }
+        for(Pais pais:paisesTrabajadores.keySet())
+            System.out.println("Pais: " + pais + " trabajadores -->" + paisesTrabajadores.get(pais));
 
         //Periodo entre dos fechas --> Period.between(fechanacimiento,fecha actual).getYears()
+        //Recorrer todos los trabajadores y mostrar solo aquellos con edad superior a 50 años utilizando un iterador.
+        Iterator<Trabajador> trabajadorIterator = trabajadores.keySet().iterator();
+        while(trabajadorIterator.hasNext()){
+            Trabajador trabajador=trabajadorIterator.next();
+            if(Period.between(trabajador.getFechaNac(),LocalDate.now()).getYears()>=50)
+                System.out.println("Empleado: " + trabajador);
+        }
+
+        trabajadores.keySet().stream().
+                filter(trabajador -> Period.between(trabajador.getFechaNac(),LocalDate.now()).getYears()>=50).
+                sorted(Trabajador.SORT_BY_AGE).
+                forEach(System.out::println);
+
+
 
     }
 }
