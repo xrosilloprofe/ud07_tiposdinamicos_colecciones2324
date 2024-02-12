@@ -61,4 +61,8 @@ public class PeliculaTO implements Comparable<PeliculaTO>{
         return id==peli.getId() && titulo.equals(peli.getTitulo());
     }
 
+    public void roles(){
+
+    }
+
 }
