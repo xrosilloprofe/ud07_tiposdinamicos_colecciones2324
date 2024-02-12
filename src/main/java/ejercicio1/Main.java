@@ -3,7 +3,7 @@ package ejercicio1;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.*;
-import java.util.stream.Collectors;
+
 
 public class Main {
     public static void main(String[] args) {
